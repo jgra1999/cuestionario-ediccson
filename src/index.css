@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	body {
+		background-color: #f9f9f9;
+	}
+	input[type='radio']:checked + label {
+		padding: 4px 15px;
+		width: 275px;
+		background-color: #1c3464;
+		color: #fff;
+	}
+
+	input[type='radio']:checked + label:before {
+		display: none;
+	}
+
+	input[type='checkbox']:checked + label:before {
+		background-color: #1c3464;
+	}
+
+	.font-rajdhani {
+		font-family: 'Rajdhani', sans-serif;
+	}
+
+	.step__default {
+		border: 2px solid #d1d5db;
+	}
+
+	.step__progress {
+		border: 2px solid #1c3464;
+	}
+
+	.step__done {
+		background-color: #1c3464;
+		border: 2px solid #1c3464;
+	}
+
+	.step__finish {
+		background-color: #1c3464;
+		border: 0px solid white;
+	}
+}
