@@ -6,6 +6,15 @@
 	body {
 		background-color: #f9f9f9;
 	}
+	/* input[type='tel'] {
+		padding: 8px 16px;
+		min-width: 77vw;
+		border-radius: 0.5rem;
+		font-family: inherit;
+		font-size: 100%;
+		color: inherit;
+		border: 2px solid #1c3464;
+	} */
 	input[type='radio']:checked + label {
 		padding: 4px 15px;
 		width: 275px;

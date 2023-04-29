@@ -4,33 +4,55 @@ import Layout from '../layout/Layout'
 import Button from '../components/Button'
 import Title from '../components/form/Title'
 
-import Members from '../components/form/Members'
-import { surveyStore } from '../store/survey'
+// import Members from '../components/form/Members'
 import { useForm } from '../hooks/useForm'
+import { formStore } from '../store/form'
+import Input from '../components/form/Input'
 
 export default function FourthQ() {
 	// const [membersNumber, setMembersNumber] = useState(1)
 
-	const { stepFront, stepBack, setForm, form } = surveyStore()
-	const [inputs, handleChange] = useForm(form)
+	const { stepFront, stepBack, setFormFields, formFields } = formStore()
+	const [inputs, handleChange] = useForm(formFields)
 
 	const handleStore = () => {
 		stepFront()
-		setForm(inputs)
+		setFormFields(inputs)
 	}
 
 	return (
 		<Layout>
 			<div>
-				<Title text='¿Quienes conformaran la empresa?' />
+				<Title text='Ingresa los datos del propietario de la empresa' />
 				<p className='mt-2 text-gray-500 text-sm'>
-					Por favor indícanos datos personales de la (s) personas que conformaran tu
-					empresa. NO es obligatorio tener SSN o ITIN sin embargo si lo posees seria
-					conveniente que nos indicaras cual es.
+					Para abrir una empresa, algunos datos personales, como tu nombre,
+					apellido,numero de identificación y dirección, Estos datos son necesarios
+					para generar el contrato de servicio y el registro mercantil de tu empresa.
+					Por favor, rellena el formulario con la información solicitada y haz clic
+					en continuar. Tus datos serán tratados con confidencialidad y seguridad.
 				</p>
 			</div>
 
-			<Members event={handleChange} />
+			<div className='grid grid-cols-1 md:grid-cols-2 gap-y-5'>
+				<Input text='Nombre' name='owner_first_name' onChange={handleChange} />
+				<Input text='Apellido' name='owner_Last_name' onChange={handleChange} />
+				<Input
+					text='Dirección Principal'
+					name='owner_address1'
+					onChange={handleChange}
+				/>
+
+				<Input
+					text='Dirección Secundario'
+					name='owner_address2'
+					onChange={handleChange}
+				/>
+
+				<Input text='País' name='owner_country' onChange={handleChange} />
+				<Input text='Estado' name='owner_state' onChange={handleChange} />
+				<Input text='Ciudad' name='owner_city' onChange={handleChange} />
+				<Input text='Código Zip' name='owner_zip' onChange={handleChange} />
+			</div>
 
 			{/* {membersNumber === 2 ? <Members /> : ''}
 
@@ -55,6 +77,7 @@ export default function FourthQ() {
 					event={handleStore}
 				/>
 			</div>
+			<button onClick={() => console.log(formFields)}>click</button>
 		</Layout>
 	)
 }

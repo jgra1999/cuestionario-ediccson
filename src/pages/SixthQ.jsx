@@ -1,19 +1,15 @@
 import React from 'react'
 import Layout from '../layout/Layout'
 
-import Checkbox from '../components/form/Checkbox'
 import Button from '../components/Button'
 import Title from '../components/form/Title'
-import { surveyStore } from '../store/survey'
-import { useForm } from '../hooks/useForm'
+import { formStore } from '../store/form'
 
 export default function SixthQ() {
-	const { stepFront, stepBack, form, setForm } = surveyStore()
-	const [inputs, handleChange] = useForm(form)
+	const { stepFront, stepBack, formFields } = formStore()
 
 	const handleStore = () => {
 		stepFront()
-		setForm(inputs)
 	}
 
 	return (
@@ -26,11 +22,6 @@ export default function SixthQ() {
 					paso.
 				</p>
 			</div>
-			<Checkbox
-				text='Quieres nuestra asesoría?'
-				name='consultancy'
-				onChange={handleChange}
-			/>
 
 			<div className='w-full flex items-center justify-between'>
 				<Button
@@ -46,6 +37,7 @@ export default function SixthQ() {
 					event={handleStore}
 				/>
 			</div>
+			<button onClick={() => console.log(formFields)}>click</button>
 		</Layout>
 	)
 }

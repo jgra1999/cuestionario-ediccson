@@ -9,11 +9,14 @@ export default function Confirmation() {
 	return (
 		<Layout>
 			<div>
-				<Title text='Fin del Proceso' />
+				<Title text='Estás a un paso de abrir tu empresa' />
 				<p className='mt-2 text-gray-500 text-sm'>
-					Finalicemos el proceso de apertura de empresa, haz click en el boton de
-					finalizar, seras enviado a nuestras pasarelas de pago para finalizar el
-					proceso.
+					¡Felicitaciones por completar el cuestionario! Ahora solo falta un paso más
+					para abrir tu empresa: hacer el pago correspondiente. Haz clic en el botón
+					de finalizar y serás enviado a nuestras pasarelas de pago seguras y
+					confiables. Una vez que hayas hecho el pago, recibirás un correo
+					electrónico con la confirmación y los próximos pasos a seguir. ¡Gracias por
+					confiar en nosotros!
 				</p>
 			</div>
 			<div className='w-full flex items-center justify-between'>

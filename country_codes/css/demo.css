@@ -1,0 +1,28 @@
+input[disabled],
+button[disabled] {
+	background-color: #eee;
+}
+
+input,
+select {
+	border: 1px solid #ccc;
+	width: 250px;
+}
+
+::-webkit-input-placeholder {
+	color: #bbb;
+}
+
+::-moz-placeholder {
+	/* Firefox 19+ */
+	color: #bbb;
+	opacity: 1;
+}
+
+:-ms-input-placeholder {
+	color: #bbb;
+}
+
+#result {
+	margin-bottom: 100px;
+}

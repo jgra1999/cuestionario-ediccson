@@ -7,7 +7,7 @@ export const surveyStore = create((set) => ({
 	stepBack: () => set((state) => ({ counter: state.counter - 1 })),
 
 	form: {
-		company: '',
+		company_name: '',
 		company_description: '',
 		company_address: '',
 		virtual_address: false,

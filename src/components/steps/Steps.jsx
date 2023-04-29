@@ -51,8 +51,8 @@ export default function Steps() {
 		<div className='border-b-2 border-gray-300 px-24 py-8 hidden md:flex items-center justify-center'>
 			<Step text='Estructura' css={step1} />
 			<Step text='Información' css={step2} />
-			<Step text='CEO' css={step3} />
-			<Step text='Personal' css={step4} />
+			<Step text='Representante' css={step3} />
+			<Step text='Propietario' css={step4} />
 			<Step text='Dirección' css={step5} />
 			<Step text='Imagen' css={step6} />
 			<div className='w-10 h-10 rounded-full border-2'></div>

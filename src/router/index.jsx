@@ -11,6 +11,7 @@ import FourthQ from '../pages/FourthQ'
 import FifthQ from '../pages/FifthQ'
 import SixthQ from '../pages/SixthQ'
 import Confirmation from '../pages/Confirmation'
+import Contact from '../pages/Contact'
 
 export const router = createHashRouter([
 	{
@@ -40,6 +41,10 @@ export const router = createHashRouter([
 	{
 		path: '/confirmacion',
 		element: <Confirmation />
+	},
+	{
+		path: '/contacto',
+		element: <Contact />
 	},
 	{
 		path: '/encuestas',

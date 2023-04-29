@@ -5,17 +5,18 @@ import Button from '../components/Button'
 import Title from '../components/form/Title'
 import Checkbox from '../components/form/Checkbox'
 import Input from '../components/form/Input'
-import { surveyStore } from '../store/survey'
 import { useForm } from '../hooks/useForm'
+import { formStore } from '../store/form'
 
 export default function Fifth() {
-	const { stepFront, stepBack, form, setForm } = surveyStore()
-	const [inputs, handleChange] = useForm(form)
 	const inputRef = useRef(null)
+
+	const { stepFront, stepBack, setFormFields, formFields } = formStore()
+	const [inputs, handleChange] = useForm(formFields)
 
 	const handleStore = () => {
 		stepFront()
-		setForm(inputs)
+		setFormFields(inputs)
 	}
 
 	const handleToggle = (e) => {
@@ -50,10 +51,48 @@ export default function Fifth() {
 					onChange={handleToggle}
 				/>
 
-				<div className='mt-5 hidden' ref={inputRef}>
+				<div
+					className='grid grid-cols-1 md:grid-cols-2 gap-y-5 mt-8 hidden'
+					ref={inputRef}
+				>
 					<Input
-						text='Indícanos tu dirección'
-						name='company_address'
+						text='Dirección Principal'
+						name='company_address1'
+						onChange={handleChange}
+					/>
+
+					<Input
+						text='Dirección Secundario'
+						name='company_address2'
+						onChange={handleChange}
+					/>
+
+					<div className='flex flex-col gap-y-2'>
+						<label htmlFor='company' className='font-rajdhani font-semibold text-lg'>
+							País
+						</label>
+						<input
+							type='text'
+							className='border-2 border-gray-400 rounded-lg py-2 px-4 md:w-3/4 text-gray-400 cursor-not-allowed'
+							value='Estados Unidos'
+							disabled
+						/>
+					</div>
+					<div className='flex flex-col gap-y-2'>
+						<label htmlFor='company' className='font-rajdhani font-semibold text-lg'>
+							Estado
+						</label>
+						<input
+							type='text'
+							className='border-2 border-gray-400 rounded-lg py-2 px-4 md:w-3/4 text-gray-400 cursor-not-allowed'
+							value='Florida'
+							disabled
+						/>
+					</div>
+					<Input text='Ciudad' name='company_address_city' onChange={handleChange} />
+					<Input
+						text='Código Zip'
+						name='company_address_zip'
 						onChange={handleChange}
 					/>
 				</div>
@@ -67,12 +106,13 @@ export default function Fifth() {
 					event={stepBack}
 				/>
 				<Button
-					url='/6ta-pregunta'
+					url='/confirmacion'
 					css={'bg-primary text-white'}
 					text='Siguiente'
 					event={handleStore}
 				/>
 			</div>
+			<button onClick={() => console.log(formFields)}>click</button>
 		</Layout>
 	)
 }
