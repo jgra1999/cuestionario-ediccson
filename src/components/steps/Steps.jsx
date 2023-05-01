@@ -1,6 +1,6 @@
 import React from 'react'
 import Step from './Step'
-import { surveyStore } from '../../store/survey'
+import { formStore } from '../../store/form'
 // import { useSurveyContext } from '../../hooks/useSurveyContext.js'
 
 export default function Steps() {
@@ -11,7 +11,7 @@ export default function Steps() {
 	let step5 = 'step__default'
 	let step6 = 'step__default'
 
-	const { counter } = surveyStore()
+	const { counter } = formStore()
 
 	if (counter === 0) {
 		step1 = 'step__progress'
@@ -44,7 +44,7 @@ export default function Steps() {
 		step3 = 'step__done'
 		step4 = 'step__done'
 		step5 = 'step__done'
-		step6 = 'step__progress'
+		step6 = 'step__done'
 	}
 
 	return (
@@ -54,7 +54,7 @@ export default function Steps() {
 			<Step text='Representante' css={step3} />
 			<Step text='Propietario' css={step4} />
 			<Step text='Dirección' css={step5} />
-			<Step text='Imagen' css={step6} />
+			<Step text='Final' css={step6} />
 			<div className='w-10 h-10 rounded-full border-2'></div>
 		</div>
 	)

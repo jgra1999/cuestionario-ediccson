@@ -1,11 +1,11 @@
 import React from 'react'
-import { surveyStore } from '../store/survey'
 import Layout from '../layout/Layout'
 import Title from '../components/form/Title'
 import Button from '../components/Button'
+import { formStore } from '../store/form'
 
 export default function Confirmation() {
-	const { stepBack } = surveyStore()
+	const { stepBack } = formStore()
 	return (
 		<Layout>
 			<div>

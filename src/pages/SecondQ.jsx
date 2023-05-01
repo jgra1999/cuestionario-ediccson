@@ -43,11 +43,13 @@ export default function SecondQ() {
 						className='border-2 border-primary rounded-lg py-2 px-4 md:w-3/4'
 						onBlur={(e) => setCompanyName1(e.target.value)}
 					/>
+
 					<input
 						type='text'
 						className='border-2 border-primary rounded-lg py-2 px-4 md:w-3/4'
 						onBlur={(e) => setCompanyName2(e.target.value)}
 					/>
+
 					<input
 						type='text'
 						className='border-2 border-primary rounded-lg py-2 px-4 md:w-3/4'

@@ -12,7 +12,7 @@ import Input from '../components/form/Input'
 export default function FourthQ() {
 	// const [membersNumber, setMembersNumber] = useState(1)
 
-	const { stepFront, stepBack, setFormFields, formFields } = formStore()
+	const { stepFront, stepBack, setFormFields, formFields, counter } = formStore()
 	const [inputs, handleChange] = useForm(formFields)
 
 	const handleStore = () => {
@@ -33,7 +33,7 @@ export default function FourthQ() {
 				</p>
 			</div>
 
-			<div className='grid grid-cols-1 md:grid-cols-2 gap-y-5'>
+			<div className='grid grid-cols-1 md:grid-cols-2 gap-y-10'>
 				<Input text='Nombre' name='owner_first_name' onChange={handleChange} />
 				<Input text='Apellido' name='owner_Last_name' onChange={handleChange} />
 				<Input
@@ -43,7 +43,7 @@ export default function FourthQ() {
 				/>
 
 				<Input
-					text='Dirección Secundario'
+					text='Dirección Secundaria'
 					name='owner_address2'
 					onChange={handleChange}
 				/>
@@ -51,7 +51,12 @@ export default function FourthQ() {
 				<Input text='País' name='owner_country' onChange={handleChange} />
 				<Input text='Estado' name='owner_state' onChange={handleChange} />
 				<Input text='Ciudad' name='owner_city' onChange={handleChange} />
-				<Input text='Código Zip' name='owner_zip' onChange={handleChange} />
+				<Input
+					text='Código Zip'
+					name='owner_zip'
+					type='number'
+					onChange={handleChange}
+				/>
 			</div>
 
 			{/* {membersNumber === 2 ? <Members /> : ''}
@@ -77,7 +82,7 @@ export default function FourthQ() {
 					event={handleStore}
 				/>
 			</div>
-			<button onClick={() => console.log(formFields)}>click</button>
+			{/* <button onClick={() => console.log(counter)}>click</button> */}
 		</Layout>
 	)
 }

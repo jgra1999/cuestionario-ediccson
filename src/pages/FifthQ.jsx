@@ -22,8 +22,10 @@ export default function Fifth() {
 	const handleToggle = (e) => {
 		if (e.target.checked) {
 			inputRef.current.classList.remove('hidden')
+			inputRef.current.classList.add('grid')
 		} else {
 			inputRef.current.classList.add('hidden')
+			inputRef.current.classList.remove('grid')
 		}
 	}
 
@@ -52,7 +54,7 @@ export default function Fifth() {
 				/>
 
 				<div
-					className='grid grid-cols-1 md:grid-cols-2 gap-y-5 mt-8 hidden'
+					className='hidden grid-cols-1 md:grid-cols-2 gap-y-5 mt-8 '
 					ref={inputRef}
 				>
 					<Input
@@ -94,6 +96,7 @@ export default function Fifth() {
 						text='Código Zip'
 						name='company_address_zip'
 						onChange={handleChange}
+						type='number'
 					/>
 				</div>
 			</div>
@@ -112,7 +115,7 @@ export default function Fifth() {
 					event={handleStore}
 				/>
 			</div>
-			<button onClick={() => console.log(formFields)}>click</button>
+			{/* <button onClick={() => console.log(counter)}>click</button> */}
 		</Layout>
 	)
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Header from '../components/Header'
 import Card from '../components/form/Card'
 import Title from '../components/form/Title'
@@ -6,17 +6,19 @@ import Input from '../components/form/Input'
 import { formStore } from '../store/form'
 
 export default function Contact() {
-	const { contactForm, setContactForm } = formStore()
-	const [phone, setPhone] = useState('+')
+	// const [phone, setPhone] = useState('+')
 
-	useEffect(() => {
-		const input = document.querySelector('input[name="client_phone"]')
-		window.intlTelInput(input, {})
-	}, [])
+	//? Código para integrar el selector de país en el input (no funciono en producción)
+	// useEffect(() => {
+	// 	const input = document.querySelector('input[name="client_phone"]')
+	// 	window.intlTelInput(input, {})
+	// }, [])
+	const { contactForm, setContactForm } = formStore()
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		const name = e.target.elements[0].value
+		const phone = e.target.elements[1].value
 		const email = e.target.elements[2].value
 		const state = e.target.elements[3].value
 
@@ -48,26 +50,16 @@ export default function Contact() {
 					</div>
 
 					<form
-						className='grid grid-cols-1 md:grid-cols-2 gap-y-5'
+						className='grid grid-cols-1 md:grid-cols-2 gap-y-10'
 						onSubmit={handleSubmit}
 					>
 						<Input text='Nombre y Apellido' name='client_name' />
-						<div className='flex flex-col gap-y-2 '>
-							<label
-								htmlFor='client_phone'
-								className='font-rajdhani font-semibold text-lg'
-							>
-								Teléfono
-							</label>
-							<input
-								type='tel'
-								name='client_phone'
-								className='border-2 border-primary rounded-lg py-2 px-4 min-w-[72vw] md:min-w-[0]'
-								value={phone}
-								onChange={(e) => setPhone(e.target.value)}
-							/>
-						</div>
-						<Input text='Correo electrónico' name='client_email' />
+						<Input
+							text='Teléfono con condigo de país'
+							name='client_phone'
+							type='tel'
+						/>
+						<Input text='Correo electrónico' name='client_email' type='email' />
 						<Input
 							text='Estado'
 							name='client_company_state'
@@ -82,7 +74,7 @@ export default function Contact() {
 						</button>
 					</form>
 				</div>
-				<button onClick={() => console.log(contactForm)}>click</button>
+				{/* <button onClick={() => console.log(contactForm)}>click</button> */}
 			</Card>
 		</>
 	)

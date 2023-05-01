@@ -1,19 +1,89 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-export default function Input({ text, name, onChange, placeholderText = '' }) {
-	//TODO: Cambiar nombre del evento onChange de las prompts
+export default function Input({
+	text,
+	name,
+	onChange,
+	placeholderText = '',
+	type = 'text'
+}) {
+	//TODO: Cambiar nombre del evento onChange de las props
+	const [inputValidated, setInputValidated] = useState(true)
+	const [validationMessage, setValidationMessage] = useState('Campo Obligatario.')
+
+	const handleInputValidated = (e) => {
+		const validation = {
+			name: /^[a-zA-ZÀ-ÿ\s]{1,45}$/, // Letras y espacios, pueden llevar acentos.
+			email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+			numbers: /^[0-9]+$/,
+			phone:
+				// eslint-disable-next-line no-useless-escape
+				/^(\(\+?\d{2,3}\)[\*|\s|\-|\.]?(([\d][\*|\s|\-|\.]?){6})(([\d][\s|\-|\.]?){2,3})?|(\+?[\d][\s|\-|\.]?){8}(([\d][\s|\-|\.]?){2,3}(([\d][\s|\-|\.]?){2,3})?)?)$/
+		}
+
+		switch (e.target.type) {
+			case 'text':
+				if (validation.name.test(e.target.value)) {
+					setInputValidated(true)
+				} else {
+					setInputValidated(false)
+					setValidationMessage('Este campo solo acepta letras, espacios y acentos')
+				}
+				break
+
+			case 'email':
+				if (validation.email.test(e.target.value)) {
+					setInputValidated(true)
+				} else {
+					setInputValidated(false)
+					setValidationMessage('Ingresa un email valido')
+				}
+				break
+
+			case 'tel':
+				if (validation.phone.test(e.target.value)) {
+					setInputValidated(true)
+				} else {
+					setInputValidated(false)
+					setValidationMessage('Este campo solo acepta números')
+				}
+				break
+
+			case 'number':
+				if (validation.numbers.test(e.target.value)) {
+					setInputValidated(true)
+				} else {
+					setInputValidated(false)
+					setValidationMessage('Ingresa un código postal valido')
+				}
+				break
+
+			default:
+				break
+		}
+	}
 	return (
-		<div className='flex flex-col gap-y-2'>
+		<div className='flex flex-col gap-y-2 relative'>
 			<label htmlFor={name} className='font-rajdhani font-semibold text-lg'>
 				{text}
 			</label>
 			<input
-				type='text'
+				type={type}
 				className='border-2 border-primary rounded-lg py-2 px-4 md:w-3/4'
 				name={name}
 				onChange={onChange}
+				onBlur={handleInputValidated}
 				placeholder={placeholderText}
 			/>
+			{!inputValidated ? (
+				<div className='absolute -bottom-5 -left-5'>
+					<p className='text-red-700 mt-1 text-xs ml-7 font-medium'>
+						{validationMessage}
+					</p>
+				</div>
+			) : (
+				''
+			)}
 		</div>
 	)
 }

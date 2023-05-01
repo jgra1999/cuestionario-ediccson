@@ -2,11 +2,11 @@ import React from 'react'
 import Layout from '../layout/Layout'
 import Button from '../components/Button'
 import Title from '../components/form/Title'
-import { surveyStore } from '../store/survey'
 import { Link } from 'react-router-dom'
+import { formStore } from '../store/form'
 
 export default function App() {
-	const { stepFront } = surveyStore()
+	const { stepFront } = formStore()
 	return (
 		<>
 			<Layout>
