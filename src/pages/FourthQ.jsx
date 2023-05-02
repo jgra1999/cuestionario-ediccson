@@ -8,11 +8,12 @@ import Title from '../components/form/Title'
 import { useForm } from '../hooks/useForm'
 import { formStore } from '../store/form'
 import Input from '../components/form/Input'
+import TextArea from '../components/form/TextArea'
 
 export default function FourthQ() {
 	// const [membersNumber, setMembersNumber] = useState(1)
 
-	const { stepFront, stepBack, setFormFields, formFields, counter } = formStore()
+	const { stepFront, stepBack, setFormFields, formFields } = formStore()
 	const [inputs, handleChange] = useForm(formFields)
 
 	const handleStore = () => {
@@ -34,28 +35,59 @@ export default function FourthQ() {
 			</div>
 
 			<div className='grid grid-cols-1 md:grid-cols-2 gap-y-10'>
-				<Input text='Nombre' name='owner_first_name' onChange={handleChange} />
-				<Input text='Apellido' name='owner_Last_name' onChange={handleChange} />
 				<Input
+					text='Nombre y Apellido'
+					name='owner_name'
+					onChange={handleChange}
+					placeholderText={formFields.owner_name}
+				/>
+				<TextArea
 					text='Dirección Principal'
 					name='owner_address1'
 					onChange={handleChange}
+					placeholderText={formFields.owner_address1}
+					rowsNumber={1}
 				/>
 
-				<Input
+				<TextArea
 					text='Dirección Secundaria'
 					name='owner_address2'
 					onChange={handleChange}
+					placeholderText={formFields.owner_address2}
+					rowsNumber={1}
 				/>
 
-				<Input text='País' name='owner_country' onChange={handleChange} />
-				<Input text='Estado' name='owner_state' onChange={handleChange} />
-				<Input text='Ciudad' name='owner_city' onChange={handleChange} />
+				<Input
+					text='País'
+					name='owner_country'
+					onChange={handleChange}
+					placeholderText={formFields.owner_country}
+				/>
+				<Input
+					text='Estado'
+					name='owner_state'
+					onChange={handleChange}
+					placeholderText={formFields.owner_state}
+				/>
+				<Input
+					text='Ciudad'
+					name='owner_city'
+					onChange={handleChange}
+					placeholderText={formFields.owner_city}
+				/>
 				<Input
 					text='Código Zip'
 					name='owner_zip'
 					type='number'
 					onChange={handleChange}
+					placeholderText={formFields.owner_zip}
+				/>
+				<Input
+					text='SSN, ITIN o EIN'
+					name='owner_id_num'
+					type='number'
+					onChange={handleChange}
+					placeholderText={formFields.owner_id_num}
 				/>
 			</div>
 
@@ -82,7 +114,7 @@ export default function FourthQ() {
 					event={handleStore}
 				/>
 			</div>
-			{/* <button onClick={() => console.log(counter)}>click</button> */}
+			{/* <button onClick={() => console.log(formFields)}>click</button> */}
 		</Layout>
 	)
 }

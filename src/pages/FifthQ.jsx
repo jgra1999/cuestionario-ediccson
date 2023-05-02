@@ -7,6 +7,7 @@ import Checkbox from '../components/form/Checkbox'
 import Input from '../components/form/Input'
 import { useForm } from '../hooks/useForm'
 import { formStore } from '../store/form'
+import TextArea from '../components/form/TextArea'
 
 export default function Fifth() {
 	const inputRef = useRef(null)
@@ -57,16 +58,20 @@ export default function Fifth() {
 					className='hidden grid-cols-1 md:grid-cols-2 gap-y-5 mt-8 '
 					ref={inputRef}
 				>
-					<Input
+					<TextArea
 						text='Dirección Principal'
 						name='company_address1'
 						onChange={handleChange}
+						placeholderText={formFields.company_address1}
+						rowsNumber={1}
 					/>
 
-					<Input
+					<TextArea
 						text='Dirección Secundario'
 						name='company_address2'
 						onChange={handleChange}
+						placeholderText={formFields.company_address2}
+						rowsNumber={1}
 					/>
 
 					<div className='flex flex-col gap-y-2'>
@@ -91,12 +96,18 @@ export default function Fifth() {
 							disabled
 						/>
 					</div>
-					<Input text='Ciudad' name='company_address_city' onChange={handleChange} />
+					<Input
+						text='Ciudad'
+						name='company_city'
+						onChange={handleChange}
+						placeholderText={formFields.company_city}
+					/>
 					<Input
 						text='Código Zip'
-						name='company_address_zip'
+						name='company_zip'
 						onChange={handleChange}
 						type='number'
+						placeholderText={formFields.company_zip}
 					/>
 				</div>
 			</div>
@@ -115,7 +126,7 @@ export default function Fifth() {
 					event={handleStore}
 				/>
 			</div>
-			{/* <button onClick={() => console.log(counter)}>click</button> */}
+			{/* <button onClick={() => console.log(formFields)}>click</button> */}
 		</Layout>
 	)
 }

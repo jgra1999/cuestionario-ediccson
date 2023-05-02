@@ -9,14 +9,15 @@ import { useForm } from '../hooks/useForm'
 import { formStore } from '../store/form'
 
 export default function SecondQ() {
-	const { setCompanyNames, stepFront, stepBack, setFormFields } = formStore()
+	const { setCompanyNames, stepFront, stepBack, setFormFields, formFields } =
+		formStore()
 
 	const [companyName1, setCompanyName1] = useState('')
 	const [companyName2, setCompanyName2] = useState('')
 	const [companyName3, setCompanyName3] = useState('')
 	const [arrayNames, setArrayNames] = useState([])
 
-	const [inputs, handleChange] = useForm({})
+	const [inputs, handleChange] = useForm(formFields)
 
 	const handleCompanyNames = (e) => {
 		e.preventDefault()
@@ -57,7 +58,7 @@ export default function SecondQ() {
 					/>
 
 					<button
-						className='py-2 px-3 md:px-10 rounded-lg bg-primary text-white w-[200px]'
+						className='py-2 px-3 md:px-10 rounded-lg bg-gray-400 active:bg-primary text-white w-[180px]'
 						onClick={handleCompanyNames}
 					>
 						Guardar
@@ -67,9 +68,10 @@ export default function SecondQ() {
 
 			<TextArea
 				text='Rubro Comercial'
-				placeholder='Indícanos el detalle comercial al cual se dedicara tu empresa, háblanos de que producto venderás o que servicio ofrecerás'
+				placeholder={formFields.company_description}
 				onChange={handleChange}
 				name='company_description'
+				rowsNumber={5}
 			/>
 
 			<Checkbox

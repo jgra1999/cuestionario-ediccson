@@ -35,18 +35,21 @@ export default function ThirdQ() {
 					text='Nombre y Apellido'
 					name='representative_name'
 					onChange={handleChange}
+					placeholderText={formFields.representative_name}
 				/>
 				<Input
 					text='Teléfono con condigo de país'
 					type='tel'
 					name='representative_phone'
 					onChange={handleChange}
+					placeholderText={formFields.representative_phone}
 				/>
 				<Input
 					text='Correo electrónico'
 					type='email'
 					name='representative_email'
 					onChange={handleChange}
+					placeholderText={formFields.representative_email}
 				/>
 			</div>
 
@@ -64,7 +67,8 @@ export default function ThirdQ() {
 					event={handleStore}
 				/>
 			</div>
-			{/* <button onClick={() => console.log(formFields)}>click</button> */}
+			<button onClick={() => console.log(formFields)}>click</button>
+			{/*<button onClick={() => console.log(companyNames)}>click 2</button> */}
 		</Layout>
 	)
 }

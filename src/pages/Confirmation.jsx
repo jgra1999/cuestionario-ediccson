@@ -1,11 +1,66 @@
+/* eslint-disable camelcase */
 import React from 'react'
 import Layout from '../layout/Layout'
 import Title from '../components/form/Title'
 import Button from '../components/Button'
 import { formStore } from '../store/form'
+import { supabase } from '../supabase/client'
 
 export default function Confirmation() {
-	const { stepBack } = formStore()
+	const { stepBack, formFields, companyNames } = formStore()
+	const companyNamesString = JSON.stringify(companyNames)
+	const {
+		company_description,
+		recruiting_staff,
+		representative_name,
+		representative_email,
+		representative_phone,
+		owner_name,
+		owner_id_num,
+		owner_address1,
+		owner_address2,
+		owner_country,
+		owner_state,
+		owner_city,
+		owner_zip,
+		company_city,
+		company_zip,
+		company_address1,
+		company_address2,
+		virtual_address
+	} = formFields
+
+	const data = {
+		company_names: companyNamesString,
+		company_description,
+		recruiting_staff,
+		representative_name,
+		representative_email,
+		representative_phone,
+		owner_name,
+		owner_id_num,
+		owner_address1,
+		owner_address2,
+		owner_country,
+		owner_state,
+		owner_city,
+		owner_zip,
+		company_city,
+		company_zip,
+		company_address1,
+		company_address2,
+		virtual_address
+	}
+
+	const handleSaveData = async () => {
+		try {
+			// eslint-disable-next-line no-unused-vars
+			const { error } = await supabase.from('cuestionario').insert(data)
+		} catch (error) {
+			// eslint-disable-next-line no-console
+			console.error(error)
+		}
+	}
 	return (
 		<Layout>
 			<div>
@@ -27,13 +82,13 @@ export default function Confirmation() {
 					event={stepBack}
 				/>
 				<a
-					href='https://iventium.com/producto/creacion-de-empresa/'
+					href='https://reactrouter.com/en/main/components/link'
+					onClick={handleSaveData}
 					className='py-3 px-6 md:px-10 rounded-lg md:text-lg bg-primary text-white'
 				>
 					Finalizar
 				</a>
 			</div>
-			{/* <button onClick={() => console.log(form)}>click</button> */}
 		</Layout>
 	)
 }

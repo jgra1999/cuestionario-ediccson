@@ -12,15 +12,15 @@ export const formStore = create((set) => ({
 
 	/* Campos simples del formulario */
 	formFields: {
-		company_description: '',
-		recruiting_staff: '',
+		company_names: '',
+		company_description:
+			'Indícanos el detalle comercial al cual se dedicara tu empresa, háblanos de que producto venderás o que servicio ofrecerás.',
+		recruiting_staff: false,
 		representative_name: '',
 		representative_email: '',
 		representative_phone: null,
-		document: '',
-		document_number: '',
-		owner_first_name: '',
-		owner_last_name: '',
+		owner_name: '',
+		owner_id_num: 'Completa este campo si posees uno',
 		owner_address1: '',
 		owner_address2: '',
 		owner_country: '',
@@ -37,18 +37,5 @@ export const formStore = create((set) => ({
 		set((state) => ({
 			...state.formFields,
 			formFields: data
-		})),
-
-	contactForm: {
-		client_name: '',
-		client_phone: '',
-		client_email: '',
-		client_company_state: ''
-	},
-
-	setContactForm: (data) =>
-		set((state) => ({
-			...state.contactForm,
-			contactForm: data
 		}))
 }))

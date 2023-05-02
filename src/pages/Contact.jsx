@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Header from '../components/Header'
 import Card from '../components/form/Card'
 import Title from '../components/form/Title'
 import Input from '../components/form/Input'
-import { formStore } from '../store/form'
+import { supabase } from '../supabase/client'
 
 export default function Contact() {
 	// const [phone, setPhone] = useState('+')
@@ -13,9 +13,11 @@ export default function Contact() {
 	// 	const input = document.querySelector('input[name="client_phone"]')
 	// 	window.intlTelInput(input, {})
 	// }, [])
-	const { contactForm, setContactForm } = formStore()
 
-	const handleSubmit = (e) => {
+	const [sending, setSending] = useState(false)
+	const [sended, setSended] = useState(false)
+
+	const handleSubmit = async (e) => {
 		e.preventDefault()
 		const name = e.target.elements[0].value
 		const phone = e.target.elements[1].value
@@ -29,13 +31,24 @@ export default function Contact() {
 			client_company_state: state
 		}
 
-		setContactForm(data)
+		try {
+			setSending(true)
+			// eslint-disable-next-line no-unused-vars
+			const { error } = await supabase.from('contacto').insert(data)
+		} catch (error) {
+			// eslint-disable-next-line no-console
+			console.error(error)
+		} finally {
+			setSending(false)
+			setSended(true)
+			e.target.reset()
+		}
 	}
 	return (
 		<>
 			<Header />
 			<Card>
-				<div className='flex flex-col gap-y-14 px-10 md:px-20 py-12'>
+				<div className='flex flex-col gap-y-14 px-10 md:px-20 py-12 relative'>
 					<div>
 						<Title text='Abre tu empresa en cualquier estado de EE.UU. con nuestra ayuda' />
 						<p className='mt-2 text-gray-500 text-sm font-medium'>
@@ -58,6 +71,7 @@ export default function Contact() {
 							text='Teléfono con condigo de país'
 							name='client_phone'
 							type='tel'
+							placeholderText='+00 123456789'
 						/>
 						<Input text='Correo electrónico' name='client_email' type='email' />
 						<Input
@@ -70,11 +84,16 @@ export default function Contact() {
 							type='submit'
 							className='bg-primary text-white py-3 px-6 md:px-10 rounded-lg md:text-lg w-[150px]'
 						>
-							Enviar
+							{sending ? 'Enviando...' : 'Enviar'}
 						</button>
 					</form>
+					{sended && (
+						<p className='text-green-500 text-xs font-medium absolute bottom-5'>
+							Información enviada con éxito, te contactaremos pronto.
+						</p>
+					)}
 				</div>
-				{/* <button onClick={() => console.log(contactForm)}>click</button> */}
+				{/* <button onClick={prueba}>click</button> */}
 			</Card>
 		</>
 	)

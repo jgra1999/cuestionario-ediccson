@@ -16,9 +16,7 @@ export default function Input({
 			name: /^[a-zA-ZÀ-ÿ\s]{1,45}$/, // Letras y espacios, pueden llevar acentos.
 			email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
 			numbers: /^[0-9]+$/,
-			phone:
-				// eslint-disable-next-line no-useless-escape
-				/^(\(\+?\d{2,3}\)[\*|\s|\-|\.]?(([\d][\*|\s|\-|\.]?){6})(([\d][\s|\-|\.]?){2,3})?|(\+?[\d][\s|\-|\.]?){8}(([\d][\s|\-|\.]?){2,3}(([\d][\s|\-|\.]?){2,3})?)?)$/
+			phone: /^(\+\d{1,3})?(\d{1,4})?\s?(\d{6,10})$/
 		}
 
 		switch (e.target.type) {
@@ -27,7 +25,7 @@ export default function Input({
 					setInputValidated(true)
 				} else {
 					setInputValidated(false)
-					setValidationMessage('Este campo solo acepta letras, espacios y acentos')
+					setValidationMessage('Este campo solo acepta letras, espacios y acentos.')
 				}
 				break
 
@@ -36,7 +34,7 @@ export default function Input({
 					setInputValidated(true)
 				} else {
 					setInputValidated(false)
-					setValidationMessage('Ingresa un email valido')
+					setValidationMessage('Ingresa un email valido.')
 				}
 				break
 
@@ -45,7 +43,7 @@ export default function Input({
 					setInputValidated(true)
 				} else {
 					setInputValidated(false)
-					setValidationMessage('Este campo solo acepta números')
+					setValidationMessage('Ingresa un teléfono valido.')
 				}
 				break
 
@@ -54,7 +52,7 @@ export default function Input({
 					setInputValidated(true)
 				} else {
 					setInputValidated(false)
-					setValidationMessage('Ingresa un código postal valido')
+					setValidationMessage('Ingresa un valor valido.')
 				}
 				break
 
