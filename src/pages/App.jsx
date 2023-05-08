@@ -20,7 +20,7 @@ export default function App() {
 						Este cuestionario está diseñado para ayudarte a abrir una empresa en el
 						estado de Florida, siguiendo los requisitos legales y fiscales
 						correspondientes. Si estás interesado en abrir tu empresa en otro estado
-						de EE.UU., por favor haz clic en el siguiente enlace y{' '}
+						de EE.UU, por favor haz click en el siguiente enlace y{' '}
 						<Link to='/contacto' className='text-blue-800 hover:text-blue-700'>
 							comunícate con nosotros.{' '}
 						</Link>

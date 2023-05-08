@@ -82,13 +82,40 @@ export default function FourthQ() {
 					onChange={handleChange}
 					placeholderText={formFields.owner_zip}
 				/>
-				<Input
-					text='SSN, ITIN o EIN'
-					name='owner_id_num'
-					type='number'
-					onChange={handleChange}
-					placeholderText={formFields.owner_id_num}
-				/>
+				<div className='flex flex-col gap-y-2'>
+					<label
+						htmlFor='member_position'
+						className='font-rajdhani font-semibold text-lg'
+					>
+						SSN, ITIN o EIN
+					</label>
+					<div className='flex items-center'>
+						<select
+							name='owner_doc_type'
+							className='py-2 px-4 rounded-lg border-2 border-primary w-1/4'
+							onChange={handleChange}
+						>
+							<option value=''>Elige una</option>
+							<option value='SSN'>SSN</option>
+							<option value='ITIN'>ITIN</option>
+							<option value='EIN'>EIN</option>
+						</select>
+						<input
+							type='number'
+							name='owner_id_num'
+							className='border-2 border-primary rounded-lg py-2 px-4 md:w-2/4'
+							placeholder={formFields.owner_id_num}
+							onChange={handleChange}
+						/>
+					</div>
+				</div>
+
+				{/* <Input
+						name='owner_id_num'
+						type='number'
+						onChange={handleChange}
+						placeholderText={formFields.owner_id_num}
+					/> */}
 			</div>
 
 			{/* {membersNumber === 2 ? <Members /> : ''}

@@ -1,6 +1,7 @@
 import React from 'react'
 
 import logo from '../assets/logo.png'
+import { Link } from 'react-router-dom'
 
 export default function Header() {
 	return (
@@ -8,17 +9,7 @@ export default function Header() {
 			<nav className='flex justify-between items-center py-5 px-10'>
 				<img src={logo} alt='Ediccson Redondon Logo' className='w-20' />
 
-				<ul className='hidden md:flex gap-x-10 font-rajdhani text-gray-500 font-bold'>
-					<li>
-						<a href='https://ediccsonredondo.com/' rel='noreferrer'>
-							Home
-						</a>
-					</li>
-					<li>
-						<a href='https://ediccsonredondo.com/about-us/' rel='noreferrer'>
-							Acerca de
-						</a>
-					</li>
+				<ul className='hidden md:flex gap-x-20 font-rajdhani text-gray-500 font-bold'>
 					<li>
 						<a
 							href='https://ediccsonredondo.com/nuestros-servicios-principales/'
@@ -28,13 +19,31 @@ export default function Header() {
 						</a>
 					</li>
 					<li>
-						<a href='https://ediccsonredondo.com/blog/' rel='noreferrer'>
-							Blog
+						<a href='https://ediccsonredondo.com/ediccson-redondo/' rel='noreferrer'>
+							¿Quien soy?
+						</a>
+					</li>
+					<li>
+						<a href='https://ediccsonredondo.com/ediccson-redondo/' rel='noreferrer'>
+							Inteligencia artificial
 						</a>
 					</li>
 					<li>
 						<a href='https://ediccsonredondo.com/contacto/' rel='noreferrer'>
-							Contacto
+							Sumate
+						</a>
+					</li>
+					<li>
+						<a
+							href='https://ediccsonredondo.com/nuestros-servicios-principales/'
+							rel='noreferrer'
+						>
+							Tienda
+						</a>
+					</li>
+					<li>
+						<a href='https://ediccsonredondo.com/blog/' rel='noreferrer'>
+							Blog
 						</a>
 					</li>
 				</ul>
@@ -47,13 +56,23 @@ export default function Header() {
 					>
 						<path d='M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z' />
 					</svg>
-					<svg
-						xmlns='http://www.w3.org/2000/svg'
-						className='w-4 fill-current'
-						viewBox='0 0 24 24'
-					>
-						<path d='M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z' />
-					</svg>
+					<Link to='/login'>
+						<svg
+							xmlns='http://www.w3.org/2000/svg'
+							fill='none'
+							viewBox='0 0 24 24'
+							strokeWidth={1.5}
+							stroke='currentColor'
+							className='w-5'
+						>
+							<path
+								strokeLinecap='round'
+								strokeLinejoin='round'
+								d='M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75'
+							/>
+						</svg>
+					</Link>
+
 					<svg
 						xmlns='http://www.w3.org/2000/svg'
 						className='w-4 fill-current'

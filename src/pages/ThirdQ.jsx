@@ -67,7 +67,7 @@ export default function ThirdQ() {
 					event={handleStore}
 				/>
 			</div>
-			<button onClick={() => console.log(formFields)}>click</button>
+			{/* <button onClick={() => console.log(formFields)}>click</button> */}
 			{/*<button onClick={() => console.log(companyNames)}>click 2</button> */}
 		</Layout>
 	)
