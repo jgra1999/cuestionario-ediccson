@@ -103,7 +103,7 @@ export function ContactCard({ contact }) {
 											className='bg-gray-400 hover:bg-gray-500 text-white font-semibold rounded shadow p-2'
 											onClick={() => handleChecked(contact.id, { checked: true })}
 										>
-											Revisado
+											Contactado
 										</button>
 									</div>
 								</Dialog.Panel>

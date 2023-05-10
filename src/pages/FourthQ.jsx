@@ -87,12 +87,12 @@ export default function FourthQ() {
 						htmlFor='member_position'
 						className='font-rajdhani font-semibold text-lg'
 					>
-						SSN, ITIN o EIN
+						SSN, ITIN o EIN (Completa el campo si posees)
 					</label>
-					<div className='flex items-center'>
+					<div className='flex items-center gap-1'>
 						<select
 							name='owner_doc_type'
-							className='py-2 px-4 rounded-lg border-2 border-primary w-1/4'
+							className='py-2 px-4 rounded-lg border-2 border-primary w-[23%]'
 							onChange={handleChange}
 						>
 							<option value=''>Elige una</option>

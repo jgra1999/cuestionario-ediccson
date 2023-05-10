@@ -47,7 +47,7 @@ export function ResultsList() {
 					}
 					onClick={() => setShowSurveysChecked(true)}
 				>
-					Revisados
+					Pagados
 				</button>
 			</div>
 			<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-3 justify-items-center mt-10 sm:mt-20'>

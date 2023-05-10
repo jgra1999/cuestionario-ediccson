@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router-dom'
 import logo from '../assets/logo.png'
 
 export default function Login() {
-	const [submitted, setSubmitted] = useState(false)
 	const [sending, setSending] = useState(false)
+	const [error, setError] = useState(false)
 
 	const navigate = useNavigate()
 
@@ -15,67 +15,77 @@ export default function Login() {
 			if (!session) {
 				navigate('/login')
 			} else {
-				navigate('/encuestas')
+				navigate('/cuestionario-resultados')
 			}
 		})
 
-		// const redirect = async () => {
-		// 	const {
-		// 		data: { user }
-		// 	} = await supabase.auth.getUser()
+		const redirect = async () => {
+			const {
+				data: { user }
+			} = await supabase.auth.getUser()
 
-		// 	if (user) {
-		// 		navigate('/encuestas')
-		// 	}
-		// // }
+			if (user) {
+				navigate('/cuestionario-resultados')
+			}
+		}
 
-		// redirect()
+		redirect()
 	}, [navigate])
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 
 		const email = e.target.elements[0].value
+		const password = e.target.elements[1].value
 
-		// try {
-		// 	setSending(true)
-		// 	await supabase.auth.signInWithOtp({
-		// 		email,
-		// 		options: {
-		// 			emailRedirectTo: 'https://encuesta.ekonexium.com/#/encuestas'
-		// 		}
-		// 	})
-		// } catch (error) {
-		// eslint-disable-next-line no-console
-		// 	console.log(error)
-		// } finally {
-		// 	setSending(false)
-		// 	setSubmitted(true)
-		// }
+		try {
+			setSending(true)
+			const { error } = await supabase.auth.signInWithPassword({
+				email,
+				password,
+				options: {
+					emailRedirectTo: 'http://localhost:5173/#/cuestionario-resultados'
+				}
+			})
+			if (error) setError(true)
+		} catch (error) {
+			// eslint-disable-next-line no-console
+			console.log(error)
+		} finally {
+			setSending(false)
+		}
 	}
 
 	return (
 		<div className='container w-11/12 mx-auto flex flex-col items-center justify-center gap-y-10 mt-40'>
 			<img src={logo} alt='E-Konexium logo' className='w-40' />
-			{submitted ? (
-				<h2 className='text-2xl font-bold sm:text-4xl text-secondary'>
-					Por favor revisa tu correo para iniciar sesión{' '}
-				</h2>
-			) : (
-				<form onSubmit={handleSubmit} className='w-96'>
-					<input
-						type='email'
-						name='email'
-						placeholder='your@email.com'
-						className='border-2 border-primary rounded-lg py-2 px-4 outline-none focus:outline-none w-full'
-						onChange={(e) => setEmail(e.target.value)}
-					/>
+			<form onSubmit={handleSubmit} className='w-96 space-y-4'>
+				<input
+					type='email'
+					name='email'
+					placeholder='ejemplo@email.com'
+					className='border-2 border-primary rounded-lg py-3 px-4 outline-none focus:outline-none w-full'
+					required
+				/>
 
-					<button className='bg-primary text-white font-semibold transform hover:translate-x-2 transition-transform duration-300 w-auto max-w-[120px] p-2 rounded shadow mt-5'>
-						{sending ? 'Enviando...' : 'Enviar'}
-					</button>
-				</form>
-			)}
+				<input
+					type='pass'
+					name='password'
+					placeholder='ingresa tu contraseña'
+					className='border-2 border-primary rounded-lg py-3 px-4 outline-none focus:outline-none w-full'
+					required
+				/>
+
+				<button className='bg-primary text-white font-semibold transform hover:translate-x-2 transition-transform duration-300 w-full py-3 rounded shadow mt-5'>
+					{sending ? 'Enviando...' : 'Enviar'}
+				</button>
+
+				{error && (
+					<div className='text-red-500 text-center font-semibold'>
+						Correo electrónico o contraseña incorrectos
+					</div>
+				)}
+			</form>
 		</div>
 	)
 }

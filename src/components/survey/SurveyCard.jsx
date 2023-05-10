@@ -4,13 +4,12 @@ import { supabase } from '../../supabase/client'
 
 export function SurveyCard({ survey }) {
 	const [isOpen, setIsOpen] = useState(false)
+	const [reference, setReference] = useState('')
+	const [method, setMethod] = useState('')
 
-	const handleChecked = async (id, checked) => {
+	const handleChecked = async (id, data) => {
 		try {
-			const { error } = await supabase
-				.from('cuestionario')
-				.update(checked)
-				.eq('id', id)
+			const { error } = await supabase.from('cuestionario').update(data).eq('id', id)
 			if (error) throw error
 		} catch (error) {
 			if (error) throw error
@@ -72,7 +71,7 @@ export function SurveyCard({ survey }) {
 											{survey.owner_name}
 										</Dialog.Title>
 										<p className='text-xs md:text-sm text-gray-500 mt-3'>
-											SNN: {survey.owner_id_num}
+											{survey.owner_doc_type}: {survey.owner_id_num}
 										</p>
 									</div>
 
@@ -109,12 +108,56 @@ export function SurveyCard({ survey }) {
 													Dirección de la empresa:
 												</dt>
 												{survey.virtual_address ? (
-													<dd> No tiene dirección</dd>
+													<dd>Dirección virtual</dd>
 												) : (
 													<dd className='mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0'>
 														{survey.owner_address1}, {survey.owner_city},{' '}
 														{survey.owner_state}, {survey.owner_zip},{' '}
 														{survey.owner_country}
+													</dd>
+												)}
+											</div>
+											<div className='bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6'>
+												<dt className='text-sm font-medium text-gray-500'>
+													Código de expediente:
+												</dt>
+												<dd className='mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0'>
+													{survey.code}
+												</dd>
+											</div>
+											<div className='bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6'>
+												<dt className='text-sm font-medium text-gray-500'>
+													Método de pago:
+												</dt>
+												{survey.checked ? (
+													<dd className='mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0'>
+														{survey.purchase_reference}
+													</dd>
+												) : (
+													<dd>
+														<input
+															type='text'
+															className='border-2 border-primary focus:outline-none outline-none rounded px-2'
+															onChange={(e) => setReference(e.target.value)}
+														/>
+													</dd>
+												)}
+											</div>
+											<div className='bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6'>
+												<dt className='text-sm font-medium text-gray-500'>
+													Numero de referencia:
+												</dt>
+												{survey.checked ? (
+													<dd className='mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0'>
+														{survey.purchase_method}
+													</dd>
+												) : (
+													<dd>
+														<input
+															type='text'
+															className='border-2 border-primary focus:outline-none outline-none rounded px-2'
+															onChange={(e) => setMethod(e.target.value)}
+														/>
 													</dd>
 												)}
 											</div>
@@ -132,9 +175,15 @@ export function SurveyCard({ survey }) {
 										<button
 											type='button'
 											className='bg-gray-400 hover:bg-gray-500 text-white font-semibold rounded shadow p-2'
-											onClick={() => handleChecked(survey.id, { checked: true })}
+											onClick={() =>
+												handleChecked(survey.id, {
+													checked: true,
+													purchase_reference: reference,
+													purchase_method: method
+												})
+											}
 										>
-											Revisado
+											Confirmar
 										</button>
 									</div>
 								</Dialog.Panel>

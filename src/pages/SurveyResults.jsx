@@ -1,11 +1,38 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { supabase } from '../supabase/client'
+import logo from '../assets/logo.png'
+
 import { ResultsList } from '../components/survey/ResultsList'
 import { ContactList } from '../components/survey/ContactList'
-import logo from '../assets/logo.png'
 
 export default function SurveyResults() {
 	const [link1, setLink1] = useState(true)
 	const [link2, setLink2] = useState(false)
+
+	const navigate = useNavigate()
+
+	useEffect(() => {
+		supabase.auth.onAuthStateChange((event, session) => {
+			if (!session) {
+				navigate('/login')
+			} else {
+				navigate('/cuestionario-resultados')
+			}
+		})
+
+		const redirect = async () => {
+			const {
+				data: { user }
+			} = await supabase.auth.getUser()
+
+			if (user) {
+				navigate('/cuestionario-resultados')
+			}
+		}
+
+		redirect()
+	}, [navigate])
 
 	const handleLink1 = () => {
 		setLink1(true)
@@ -16,7 +43,8 @@ export default function SurveyResults() {
 		setLink2(true)
 		setLink1(false)
 	}
-	const handleLogout = () => {}
+	const handleLogout = async () => await supabase.auth.signOut()
+
 	return (
 		<>
 			<header className='flex flex-col md:flex-row justify-around items-center py-4 bg-white shadow'>

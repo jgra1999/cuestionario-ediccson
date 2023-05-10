@@ -12,15 +12,17 @@ export default function App() {
 			<Layout>
 				<div>
 					<Title
-						text='Para empezar este es nuestro costo por formalizar tu empresa en el Estado de la Florida, 
-						al final seras redirigido con nuestra plataforma de pago, por favor ten a la mano todos los documentos que necesites. 
+						text='Para empezar, este es nuestro costo por formalizar tu empresa en Estados Unidos. Al final de este cuestionario, se te generará un código de expediente que deberás guardar para continuar con el proceso. Luego serás redirigido a nuestra plataforma de pago, por favor ten a la mano todos los documentos que necesites. 
 '
 					/>
 					<p className='mt-2 text-gray-500 text-sm font-medium'>
 						Este cuestionario está diseñado para ayudarte a abrir una empresa en el
 						estado de Florida, siguiendo los requisitos legales y fiscales
-						correspondientes. Si estás interesado en abrir tu empresa en otro estado
-						de EE.UU, por favor haz click en el siguiente enlace y{' '}
+						correspondientes. Si estás interesado en{' '}
+						<span className='font-bold'>
+							abrir tu empresa en otro estado de EE.UU
+						</span>
+						, por favor haz click en el siguiente enlace y{' '}
 						<Link to='/contacto' className='text-blue-800 hover:text-blue-700'>
 							comunícate con nosotros.{' '}
 						</Link>
@@ -28,7 +30,7 @@ export default function App() {
 					</p>
 				</div>
 				<div className='py-1.5 px-4 border-2 border-primary rounded w-72'>
-					<p className='text-sm lg:text-lg'>LLC $599 + $125 (tasa estadal)</p>
+					<p className='text-sm lg:text-lg'>LLC $699 (Fee incluido)</p>
 				</div>
 
 				<div className='w-full flex justify-end'>

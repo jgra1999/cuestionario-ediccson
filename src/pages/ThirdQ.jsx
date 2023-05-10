@@ -38,7 +38,7 @@ export default function ThirdQ() {
 					placeholderText={formFields.representative_name}
 				/>
 				<Input
-					text='Teléfono con condigo de país'
+					text='Teléfono con código de país'
 					type='tel'
 					name='representative_phone'
 					onChange={handleChange}

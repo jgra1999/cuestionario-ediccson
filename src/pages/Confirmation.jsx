@@ -1,14 +1,20 @@
 /* eslint-disable camelcase */
 import React from 'react'
+import toast, { Toaster } from 'react-hot-toast'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
 import Layout from '../layout/Layout'
 import Title from '../components/form/Title'
 import Button from '../components/Button'
 import { formStore } from '../store/form'
 import { supabase } from '../supabase/client'
+import { passGenerate } from '../hooks/usePassGenerate'
 
 export default function Confirmation() {
 	const { stepBack, formFields, companyNames } = formStore()
 	const companyNamesString = JSON.stringify(companyNames)
+	const code = passGenerate()
+	const notify = () => toast.success('Código copiado')
+
 	const {
 		company_description,
 		recruiting_staff,
@@ -66,13 +72,33 @@ export default function Confirmation() {
 			<div>
 				<Title text='Estás a un paso de abrir tu empresa' />
 				<p className='mt-2 text-gray-500 text-sm'>
-					¡Felicitaciones por completar el cuestionario! Ahora solo falta un paso más
-					para abrir tu empresa: hacer el pago correspondiente. Haz clic en el botón
-					de finalizar y serás enviado a nuestras pasarelas de pago seguras y
-					confiables. Una vez que hayas hecho el pago, recibirás un correo
-					electrónico con la confirmación y los próximos pasos a seguir. ¡Gracias por
-					confiar en nosotros!
+					¡Felicitaciones por completar el cuestionario! Estás a un paso de abrir tu
+					empresa: solo debes realizar el pago correspondiente. Antes de finalizar,
+					te informamos que se ha generado un{' '}
+					<span className='font-bold'>código de expediente</span> que es muy
+					importante para identificar tu pago. Por favor, copia el código y guárdalo
+					en un lugar seguro. Luego, serás enviado a nuestras pasarelas de pago
+					seguras y confiables, donde deberás pegar el código en el campo de
+					información adicional al final del proceso. Después de hacer el pago,
+					recibirás un correo electrónico con la confirmación y los próximos pasos a
+					seguir. ¡Gracias por confiar en nosotros!
 				</p>
+			</div>
+			<div className='flex items-center gap-x-1'>
+				<p
+					className='border-2 rounded-md py-3 px-5 text-gray-500 font-medium
+				'
+				>
+					{code}
+				</p>
+				<CopyToClipboard text={code}>
+					<button
+						onClick={notify}
+						className='bg-primary text-white py-3 px-4 rounded-md'
+					>
+						Copiar
+					</button>
+				</CopyToClipboard>
 			</div>
 			<div className='w-full flex items-center justify-between'>
 				<Button
@@ -89,6 +115,9 @@ export default function Confirmation() {
 					Finalizar
 				</a>
 			</div>
+			{/* <button onClick={copyOnClipboard}>click</button> */}
+
+			<Toaster />
 		</Layout>
 	)
 }
