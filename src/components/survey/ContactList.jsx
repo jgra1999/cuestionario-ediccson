@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { surveyStore } from '../../store/survey'
-import { supabase } from '../../../../dynamic-form/src/supabase/client'
+import { supabase } from '../../supabase/client'
 import { ContactCard } from './ContactCard'
 
 export function ContactList() {
