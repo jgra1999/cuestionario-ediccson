@@ -15,7 +15,7 @@
 		color: inherit;
 		border: 2px solid #1c3464;
 	} */
-	input[type='radio']:checked + label {
+	/* input[type='radio']:checked + label {
 		padding: 4px 15px;
 		width: 275px;
 		background-color: #1c3464;
@@ -24,10 +24,23 @@
 
 	input[type='radio']:checked + label:before {
 		display: none;
+	} */
+
+	input[type='radio']:checked + label:before {
+		@apply bg-primary;
 	}
 
 	input[type='checkbox']:checked + label:before {
-		background-color: #1c3464;
+		@apply bg-primary;
+	}
+
+	input[type='number']::-webkit-outer-spin-button,
+	input[type='number']::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+	input[type='number'] {
+		-moz-appearance: textfield;
 	}
 
 	.font-rajdhani {
@@ -35,20 +48,19 @@
 	}
 
 	.step__default {
-		border: 2px solid #d1d5db;
+		@apply border-2 border-[#d1d5db];
 	}
 
 	.step__progress {
-		border: 2px solid #1c3464;
+		@apply border-2 border-primary;
 	}
 
 	.step__done {
-		background-color: #1c3464;
-		border: 2px solid #1c3464;
+		@apply border-2 border-primary bg-primary;
 	}
 
 	.step__finish {
-		background-color: #1c3464;
+		@apply bg-primary;
 		border: 0px solid white;
 	}
 }

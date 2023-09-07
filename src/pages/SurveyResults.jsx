@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { supabase } from '../supabase/client'
-import logo from '../assets/logo.png'
+import logo from '../assets/logo-nexo.png'
 
 import { ResultsList } from '../components/survey/ResultsList'
 import { ContactList } from '../components/survey/ContactList'
@@ -48,7 +48,7 @@ export default function SurveyResults() {
 	return (
 		<>
 			<header className='flex flex-col md:flex-row justify-around items-center py-4 bg-white shadow'>
-				<img src={logo} alt='' className='w-20' />
+				<img src={logo} alt='' className='w-40' />
 				<nav>
 					<ul className='flex justify-around items-center gap-x-10'>
 						<li className='text-secondary font-semibold text-sm'>

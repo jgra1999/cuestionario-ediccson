@@ -1,15 +1,18 @@
 import React from 'react'
 
-import logo from '../assets/logo.png'
+import logo from '../assets/logo-nexo.png'
 import { Link } from 'react-router-dom'
 
 export default function Header() {
 	return (
 		<header>
-			<nav className='flex justify-between items-center py-5 px-10'>
-				<img src={logo} alt='Ediccson Redondon Logo' className='w-20' />
+			<nav className='flex justify-between items-center py-5 px-40'>
+				<a href='#'>
+					<img src={logo} alt='NexoCreate Logo' className='w-40' />
+				</a>
 
-				<ul className='hidden md:flex gap-x-20 font-rajdhani text-gray-500 font-bold'>
+				{/* Colocar md:flex para que se vean, los oculte mientras se hace la migracion a nexocreate */}
+				<ul className='hidden gap-x-20 font-rajdhani text-gray-500 font-bold text-[15px]'>
 					<li>
 						<a
 							href='https://ediccsonredondo.com/nuestros-servicios-principales/'
@@ -48,7 +51,7 @@ export default function Header() {
 					</li>
 				</ul>
 
-				<div className='hidden md:flex gap-x-5 text-gray-500'>
+				<div className='hidden gap-x-5 text-gray-500'>
 					<svg
 						xmlns='http://www.w3.org/2000/svg'
 						className='w-4 fill-current'
@@ -56,6 +59,7 @@ export default function Header() {
 					>
 						<path d='M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z' />
 					</svg>
+
 					<Link to='/login'>
 						<svg
 							xmlns='http://www.w3.org/2000/svg'

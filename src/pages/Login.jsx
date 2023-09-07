@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { supabase } from '../supabase/client'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
-import logo from '../assets/logo.png'
+import logo from '../assets/logo-nexo.png'
 
 export default function Login() {
 	const [sending, setSending] = useState(false)
@@ -58,7 +58,9 @@ export default function Login() {
 
 	return (
 		<div className='container w-11/12 mx-auto flex flex-col items-center justify-center gap-y-10 mt-40'>
-			<img src={logo} alt='E-Konexium logo' className='w-40' />
+			<Link to='/'>
+				<img src={logo} alt='E-Konexium logo' className='w-64' />
+			</Link>
 			<form onSubmit={handleSubmit} className='w-96 space-y-4'>
 				<input
 					type='email'

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import toast, { Toaster } from 'react-hot-toast'
 import Header from '../components/Header'
 import Card from '../components/form/Card'
 import Title from '../components/form/Title'
@@ -6,8 +7,6 @@ import Input from '../components/form/Input'
 import { supabase } from '../supabase/client'
 
 export default function Contact() {
-	// const [phone, setPhone] = useState('+')
-
 	//? Código para integrar el selector de país en el input (no funciono en producción)
 	// useEffect(() => {
 	// 	const input = document.querySelector('input[name="client_phone"]')
@@ -15,7 +14,11 @@ export default function Contact() {
 	// }, [])
 
 	const [sending, setSending] = useState(false)
-	const [sended, setSended] = useState(false)
+
+	const notify = () =>
+		toast.success('Información enviada con éxito.', {
+			duration: 4000
+		})
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
@@ -35,12 +38,13 @@ export default function Contact() {
 			setSending(true)
 			// eslint-disable-next-line no-unused-vars
 			const { error } = await supabase.from('contacto').insert(data)
+			console.log('🚀 ~ file: Contact.jsx:38 ~ handleSubmit ~ error:', error)
 		} catch (error) {
 			// eslint-disable-next-line no-console
 			console.error(error)
 		} finally {
 			setSending(false)
-			setSended(true)
+			notify()
 			e.target.reset()
 		}
 	}
@@ -66,18 +70,25 @@ export default function Contact() {
 						className='grid grid-cols-1 md:grid-cols-2 gap-y-10'
 						onSubmit={handleSubmit}
 					>
-						<Input text='Nombre y Apellido' name='client_name' />
+						<Input text='Nombre y Apellido' name='client_name' isRequired={true} />
 						<Input
 							text='Teléfono con condigo de país'
 							name='client_phone'
 							type='tel'
 							placeholderText='+00 123456789'
+							isRequired={true}
 						/>
-						<Input text='Correo electrónico' name='client_email' type='email' />
+						<Input
+							text='Correo electrónico'
+							name='client_email'
+							type='email'
+							isRequired={true}
+						/>
 						<Input
 							text='Estado'
 							name='client_company_state'
 							placeholderText='Indícanos en que estado quieres abrir tu empresa'
+							isRequired={true}
 						/>
 
 						<button
@@ -87,14 +98,10 @@ export default function Contact() {
 							{sending ? 'Enviando...' : 'Enviar'}
 						</button>
 					</form>
-					{sended && (
-						<p className='text-green-500 text-xs font-medium absolute bottom-5'>
-							Información enviada con éxito, te contactaremos pronto.
-						</p>
-					)}
 				</div>
 				{/* <button onClick={prueba}>click</button> */}
 			</Card>
+			<Toaster />
 		</>
 	)
 }

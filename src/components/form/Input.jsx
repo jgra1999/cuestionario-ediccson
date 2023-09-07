@@ -5,7 +5,8 @@ export default function Input({
 	name,
 	onChange,
 	placeholderText = '',
-	type = 'text'
+	type = 'text',
+	isRequired = false
 }) {
 	//TODO: Cambiar nombre del evento onChange de las props
 	const [inputValidated, setInputValidated] = useState(true)
@@ -16,7 +17,7 @@ export default function Input({
 			name: /^[a-zA-ZÀ-ÿ\s]{1,45}$/, // Letras y espacios, pueden llevar acentos.
 			email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
 			numbers: /^[0-9]+$/,
-			phone: /^(\+\d{1,3})?(\d{1,4})?\s?(\d{6,10})$/
+			phone: /^(\+\d{1,3})\s?(\d{1,4})?\s?(\d{6,10})$/
 		}
 
 		switch (e.target.type) {
@@ -43,7 +44,9 @@ export default function Input({
 					setInputValidated(true)
 				} else {
 					setInputValidated(false)
-					setValidationMessage('Ingresa un teléfono valido.')
+					setValidationMessage(
+						'Ingresa un teléfono valido con su código de país. Solo números y signo "+"'
+					)
 				}
 				break
 
@@ -72,6 +75,7 @@ export default function Input({
 				onChange={onChange}
 				onBlur={handleInputValidated}
 				placeholder={placeholderText}
+				required={isRequired}
 			/>
 			{!inputValidated ? (
 				<div className='absolute -bottom-5 -left-5'>

@@ -131,14 +131,14 @@ export function SurveyCard({ survey }) {
 												</dt>
 												{survey.checked ? (
 													<dd className='mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0'>
-														{survey.purchase_reference}
+														{survey.purchase_method}
 													</dd>
 												) : (
 													<dd>
 														<input
 															type='text'
 															className='border-2 border-primary focus:outline-none outline-none rounded px-2'
-															onChange={(e) => setReference(e.target.value)}
+															onChange={(e) => setMethod(e.target.value)}
 														/>
 													</dd>
 												)}
@@ -149,14 +149,14 @@ export function SurveyCard({ survey }) {
 												</dt>
 												{survey.checked ? (
 													<dd className='mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0'>
-														{survey.purchase_method}
+														{survey.purchase_reference}
 													</dd>
 												) : (
 													<dd>
 														<input
 															type='text'
 															className='border-2 border-primary focus:outline-none outline-none rounded px-2'
-															onChange={(e) => setMethod(e.target.value)}
+															onChange={(e) => setReference(e.target.value)}
 														/>
 													</dd>
 												)}

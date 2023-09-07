@@ -69,6 +69,7 @@ export default function TextArea({ text, placeholder, onChange, name, rowsNumber
 				placeholder={placeholder}
 				onChange={onChange}
 				onBlur={handleITextAreaValidated}
+				required
 			></textarea>
 			{!textAreaValidated ? (
 				<div className='absolute -bottom-5 -left-5'>

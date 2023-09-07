@@ -13,15 +13,14 @@ export const formStore = create((set) => ({
 	/* Campos simples del formulario */
 	formFields: {
 		company_names: '',
-		company_description:
-			'Indícanos el detalle comercial al cual se dedicara tu empresa, háblanos de que producto venderás o que servicio ofrecerás.',
+		company_description: '',
 		recruiting_staff: false,
 		representative_name: '',
 		representative_email: '',
 		representative_phone: null,
 		owner_name: '',
 		owner_doc_type: '',
-		owner_id_num: 'Completa si posees uno',
+		owner_id_num: null,
 		owner_address1: '',
 		owner_address2: '',
 		owner_country: '',

@@ -1,7 +1,6 @@
 import React from 'react'
 import { createHashRouter } from 'react-router-dom'
 
-// import Login from '../pages/Login';
 import SurveyResults from '../pages/SurveyResults'
 
 import App from '../pages/App'
@@ -9,7 +8,6 @@ import SecondQ from '../pages/SecondQ'
 import ThirdQ from '../pages/ThirdQ'
 import FourthQ from '../pages/FourthQ'
 import FifthQ from '../pages/FifthQ'
-import SixthQ from '../pages/SixthQ'
 import Confirmation from '../pages/Confirmation'
 import Contact from '../pages/Contact'
 import Login from '../pages/Login'
@@ -20,27 +18,24 @@ export const router = createHashRouter([
 		element: <App />
 	},
 	{
-		path: '/2da-pregunta',
+		path: '/segunda-pregunta',
 		element: <SecondQ />
 	},
 	{
-		path: '/3era-pregunta',
+		path: '/tercera-pregunta',
 		element: <ThirdQ />
 	},
 	{
-		path: '/4ta-pregunta',
+		path: '/cuarta-pregunta',
 		element: <FourthQ />
 	},
 	{
-		path: '/5ta-pregunta',
+		path: '/quinta-pregunta',
 		element: <FifthQ />
 	},
+
 	{
-		path: '/6ta-pregunta',
-		element: <SixthQ />
-	},
-	{
-		path: '/confirmacion',
+		path: '/fin-del-proceso',
 		element: <Confirmation />
 	},
 	{
